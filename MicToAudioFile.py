@@ -1,45 +1,47 @@
 import pyaudio
 import wave
 import keyboard
-from time import perf_counter
 
-pttKey = "a"
+audioFileName = 0
 
-def recordAudio():
+def audioListener():
     chunk = 1024
     format = pyaudio.paInt16
     channels = 1
     rate = 44100
 
-    p = pyaudio.PyAudio()
+    audio = pyaudio.PyAudio()
 
-    stream = p.open(format=format, channels=channels, rate=rate, input=True,
+    stream = audio.open(format=format, channels=channels, rate=rate, input=True,
                 frames_per_buffer=chunk)
-    print("started recording")
 
     frames = []
-    seconds = 3
-    for i in range(0, int(rate/chunk * seconds)):
-        data = stream.read(chunk)
-        frames.append(data)
 
-    print("stopped recording")
-    stream.stop_stream()
-    stream.close()
-    p.terminate
+    global audioFileName
+    while(True): #checks first time user pushes to talk
+        if(keyboard.is_pressed('a')):
+            
+            break
 
-    wf = wave.open("output.wav", "wb")
-    wf.setnchannels(channels)
-    wf.setsampwidth(p.get_sample_size(format))
-    wf.setframerate(rate)
-    print(len(frames))
-    wf.writeframes(b''.join(frames))
-    wf.close() 
+    while(True): #checks if the user is still hitting the a key
+        if(keyboard.is_pressed('a')): #if he is, data and frams are read
+            data = stream.read(chunk)
+            frames.append(data)
+        else: #if user lets go of a key it stops the stream and creates an audio file
+            stream.stop_stream()
+            stream.close()
+            audio.terminate()
 
-while(True):
-    if(input() == pttKey):
-        print("fard")
-        break
+            wave_file = wave.open('recorded_audio' + str(audioFileName) + '.wav', 'wb')
+            wave_file.setnchannels(channels)
+            wave_file.setsampwidth(audio.get_sample_size(format))
+            wave_file.setframerate(rate)
+            wave_file.writeframes(b''.join(frames))
+            wave_file.close()
 
-print("larding")
-#recordAudio()
+            frames.clear()
+            
+            print('recorded_audio' + str(audioFileName) + '.wav')
+            val = 'recorded_audio' + str(audioFileName) + '.wav'
+            audioFileName += 1
+            return val

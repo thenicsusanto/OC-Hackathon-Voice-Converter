@@ -15,3 +15,4 @@ def tts(text):
     with open('output.mp3', 'wb') as f:
         f.write(requests.post(url, **options).content)
     print("TTS output to output.mp3 with voice " + voice)
+    return 'output.mp3'

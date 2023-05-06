@@ -1,4 +1,8 @@
+from AudioPlayer import playAudio
 from DeepL import translate
 from Narakeet import tts
+from MicToAudioFile import audioListener
+from WhisperDetection import whisperDetect
 
-tts(translate("You mom is a good person", 'KO'))
+while (True):
+    playAudio(13, tts(translate(whisperDetect(audioListener()), 'KO')))
