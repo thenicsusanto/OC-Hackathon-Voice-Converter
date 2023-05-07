@@ -20,7 +20,6 @@ def audioListener():
     global audioFileName
     while(True): #checks first time user pushes to talk
         if(keyboard.is_pressed('a')):
-            
             break
 
     while(True): #checks if the user is still hitting the a key

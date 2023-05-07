@@ -2,8 +2,6 @@ import argparse
 
 from google.cloud import language_v1
 
-
-
 def print_result(annotations):
     score = annotations.document_sentiment.score
     magnitude = annotations.document_sentiment.magnitude

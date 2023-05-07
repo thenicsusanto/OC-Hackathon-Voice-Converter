@@ -29,3 +29,5 @@ def playAudio(audio_file, device_index):
     p.terminate()
 
     audio.close()
+
+playAudio("output.mp3", 13)

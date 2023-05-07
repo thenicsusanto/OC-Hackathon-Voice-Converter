@@ -1,9 +1,9 @@
 apikey = 'Sk86nNAHbJ8VGGGWREMkk2Fc1IUh1Xga50aVDVvB'
-voice = 'Chae-Won'
-url = f'https://api.narakeet.com/text-to-speech/mp3?voice={voice}'
 import requests
 
-def tts(text):
+def tts(text, voice, speed):
+    url = f'https://api.narakeet.com/text-to-speech/mp3?voice={voice}'
+    # text = '(voice-speed: ' + speed + ') ' + text
     options = {
         'headers': {
             'Accept': 'application/octet-stream',
@@ -14,5 +14,5 @@ def tts(text):
     }
     with open('output.mp3', 'wb') as f:
         f.write(requests.post(url, **options).content)
-    print("TTS output to output.mp3 with voice " + voice)
+    print("TTS output to output.wav with voice " + voice)
     return 'output.mp3'

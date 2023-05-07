@@ -2,6 +2,6 @@
 # python -u Whisper-Detection.py
 import whisper
 def whisperDetect(file):
-    model = whisper.load_model("large")
+    model = whisper.load_model("tiny")
     result = model.transcribe(file, fp16=False)
     return result['text']
