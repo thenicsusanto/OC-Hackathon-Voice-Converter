@@ -1,4 +1,4 @@
-apikey = 'Sk86nNAHbJ8VGGGWREMkk2Fc1IUh1Xga50aVDVvB'
+apikey = 'ENTER KEY HERE'
 import requests
 
 def tts(text, voice, speed):
