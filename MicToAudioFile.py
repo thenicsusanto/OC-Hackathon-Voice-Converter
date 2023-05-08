@@ -19,11 +19,11 @@ def audioListener():
 
     global audioFileName
     while(True): #checks first time user pushes to talk
-        if(keyboard.is_pressed('a')):
+        if(keyboard.is_pressed('k')):
             break
 
     while(True): #checks if the user is still hitting the a key
-        if(keyboard.is_pressed('a')): #if he is, data and frams are read
+        if(keyboard.is_pressed('k')): #if he is, data and frams are read
             data = stream.read(chunk)
             frames.append(data)
         else: #if user lets go of a key it stops the stream and creates an audio file
